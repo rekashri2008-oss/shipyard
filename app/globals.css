@@ -8,7 +8,7 @@
 body {
   background: #f5f6fa;
   color: #20243a;
-  font-family: Arial, sans-serif;
+  font-family: var(--font-geist-sans), sans-serif;
 }
 
 .container {
@@ -75,13 +75,14 @@ body {
 
 .card-art {
   height: 190px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
 }
 
-.card-emoji {
-  font-size: 75px;
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .card-body {
@@ -115,6 +116,126 @@ body {
   margin-top: 18px;
 }
 
+.detail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 42px;
+  align-items: start;
+  margin-top: 24px;
+}
+
+.detail-art {
+  overflow: hidden;
+  border-radius: 18px;
+}
+
+.detail-loading {
+  display: grid;
+  min-height: 360px;
+  margin-top: 24px;
+  place-items: center;
+  border-radius: 18px;
+  background: #e8eaf0;
+  color: #62677a;
+}
+
+.detail-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.detail-body {
+  padding: 18px 0;
+}
+
+.detail-name {
+  font-size: 38px;
+  margin: 12px 0;
+}
+
+.detail-tagline,
+.detail-desc {
+  color: #62677a;
+  line-height: 1.6;
+}
+
+.detail-price {
+  display: block;
+  margin: 20px 0;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.detail-specs-title {
+  margin: 28px 0 12px;
+}
+
+.detail-specs {
+  padding-left: 20px;
+  color: #62677a;
+  line-height: 1.8;
+}
+
+.back-link {
+  color: #414a70;
+  text-decoration: none;
+}
+
+.reviews-shell {
+  margin-top: 64px;
+  min-height: 260px;
+}
+
+.reviews-loading {
+  display: grid;
+  min-height: 180px;
+  place-items: center;
+  border-radius: 16px;
+  background: white;
+  color: #62677a;
+}
+
+.reviews {
+  padding: 30px;
+  border-radius: 16px;
+  background: white;
+}
+
+.reviews-heading {
+  margin-bottom: 20px;
+}
+
+.reviews-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.review {
+  padding: 18px;
+  border: 1px solid #e8eaf0;
+  border-radius: 12px;
+}
+
+.review-rating {
+  color: #b7791f;
+  letter-spacing: 2px;
+}
+
+.review-copy {
+  margin: 10px 0;
+  color: #62677a;
+  line-height: 1.5;
+}
+
+.review-author {
+  font-size: 13px;
+  font-weight: 600;
+}
+
 @media (max-width: 600px) {
   .container {
     padding: 25px 15px;
@@ -126,5 +247,18 @@ body {
 
   .section-title {
     font-size: 22px;
+  }
+
+  .detail {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .detail-name {
+    font-size: 30px;
+  }
+
+  .reviews {
+    padding: 20px;
   }
 }

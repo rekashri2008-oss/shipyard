@@ -1,6 +1,32 @@
+import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
+import LazyReviews from "./LazyReviews";
 import { getProduct, products } from "../../data/products";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const product = getProduct(id);
+
+  if (!product) {
+    return {
+      title: "Product not found",
+      description:
+        "The requested product could not be found in the ShipYard catalog.",
+    };
+  }
+
+  return {
+    title: product.name,
+    description: product.description,
+  };
+}
 
 export function generateStaticParams() {
   return products.map((product) => ({
@@ -8,7 +34,30 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function ProductPage({
+export default function ProductPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <main className="container">
+          <Link href="/" className="back-link">
+            ← Back to catalog
+          </Link>
+          <div className="detail-loading" aria-live="polite">
+            Loading product…
+          </div>
+        </main>
+      }
+    >
+      <ProductDetails params={params} />
+    </Suspense>
+  );
+}
+
+async function ProductDetails({
   params,
 }: {
   params: Promise<{ id: string }>;
@@ -31,7 +80,15 @@ export default async function ProductPage({
           className="detail-art"
           style={{ background: product.accent }}
         >
-          <span className="detail-emoji">{product.emoji}</span>
+          <Image
+            src={product.image}
+            alt={`${product.name} product`}
+            width={720}
+            height={540}
+            loading="eager"
+            sizes="(max-width: 700px) 100vw, 50vw"
+            className="detail-image"
+          />
         </div>
 
         <div className="detail-body">
@@ -49,6 +106,8 @@ export default async function ProductPage({
           </ul>
         </div>
       </article>
+
+      <LazyReviews productName={product.name} />
     </main>
   );
 }

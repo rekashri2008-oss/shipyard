@@ -6,6 +6,7 @@ export interface Product {
   price: number;
   category: "Sneakers" | "Audio" | "Wearables" | "Gadgets";
   emoji: string;
+  image: string;
   accent: string;
   description: string;
   specs: string[];
@@ -19,6 +20,7 @@ export const products: Product[] = [
     price: 129,
     category: "Sneakers",
     emoji: "👟",
+    image: "/products/wave-runner.jpg",
     accent: "#6c8cff",
     description: "Lightweight running shoes with a breathable design.",
     specs: ["Knit upper", "Foam midsole", "320g per shoe", "Unisex sizing"],
@@ -31,6 +33,7 @@ export const products: Product[] = [
     category: "Audio",
     emoji: "🎧",
     accent: "#a06cff",
+    image: "/products/pulse-buds.jpg",
     description: "Compact earbuds with noise cancellation.",
     specs: ["Noise cancellation", "8h battery", "USB-C case", "IPX4"],
   },
@@ -41,6 +44,7 @@ export const products: Product[] = [
     price: 199,
     category: "Wearables",
     emoji: "⌚",
+    image: "/products/smart-watch.jpg",
     accent: "#ff8c69",
     description: "A stylish smartwatch for everyday fitness tracking.",
     specs: ["Heart rate monitor", "GPS", "Water resistant", "Touchscreen"],
@@ -52,6 +56,7 @@ export const products: Product[] = [
     price: 249,
     category: "Gadgets",
     emoji: "🚁",
+    image: "/products/mini-drone.jpg",
     accent: "#57c9a5",
     description: "A compact drone for creative aerial photography.",
     specs: ["HD camera", "Foldable design", "Remote control", "20min flight"],
@@ -63,6 +68,7 @@ export const products: Product[] = [
     price: 109,
     category: "Sneakers",
     emoji: "👟",
+    image: "/products/street-sneakers.jpg",
     accent: "#e9a23b",
     description: "Comfortable sneakers designed for daily wear.",
     specs: ["Soft lining", "Rubber sole", "Lightweight", "Unisex sizing"],
@@ -74,6 +80,7 @@ export const products: Product[] = [
     price: 159,
     category: "Audio",
     emoji: "🎵",
+    image: "/products/studio-headphone.jpg",
     accent: "#bd83d8",
     description: "Over-ear headphones with immersive sound.",
     specs: ["Wireless", "Noise isolation", "30h battery", "USB-C charging"],

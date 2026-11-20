@@ -1,6 +1,13 @@
 
+import type { Metadata } from "next";
 import ProductCard from "./components/ProductCard";
 import { products } from "./data/products";
+
+export const metadata: Metadata = {
+  title: "ShipYard | Gear for people who build, run, and explore",
+  description:
+    "Discover sneakers, audio, wearables, and gadgets made for people who build, run, and explore.",
+};
 
 export default function HomePage() {
   return (
@@ -21,10 +28,11 @@ export default function HomePage() {
         </div>
 
         <div className="grid">
-          {products.map((product) => (
+          {products.map((product, index) => (
             <ProductCard
               key={product.id}
               product={product}
+              eager={index < 4}
             />
           ))}
         </div>
