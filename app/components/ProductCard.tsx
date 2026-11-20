@@ -1,11 +1,14 @@
 
 import Link from "next/link";
+import Image from "next/image";
 import type { Product } from "../data/products";
 
 export default function ProductCard({
   product,
+  eager,
 }: {
   product: Product;
+  eager: boolean;
 }) {
   return (
     <Link href={`/products/${product.id}`} className="card">
@@ -13,7 +16,15 @@ export default function ProductCard({
         className="card-art"
         style={{ background: product.accent }}
       >
-        <span className="card-emoji">{product.emoji}</span>
+        <Image
+          src={product.image}
+          alt={`${product.name} product`}
+          width={400}
+          height={300}
+          loading={eager ? "eager" : "lazy"}
+          sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+          className="card-image"
+        />
       </div>
 
       <div className="card-body">
